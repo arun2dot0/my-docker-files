@@ -1,0 +1,125 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\froman\fcharset0 TimesNewRomanPSMT;}
+{\colortbl;\red255\green255\blue255;\red192\green192\blue192;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri380\sl276\slmult1
+
+\f0\b\fs20 \cf0 Video Script: Video #5.5 Creating a simple deployment workflow\
+\
+\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth5514\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf2 \clbrdrl\brdrs\brdrw20\brdrcf2 \clbrdrb\brdrs\brdrw20\brdrcf2 \clbrdrr\brdrs\brdrw20\brdrcf2 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\b0\fs22 \cf0 \
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\fs20 \cf0 $ ssh root@\{ip\}\
+[on remote server]\
+\
+\
+$ vi deploy-app\
+[paste in script]\
+\
+#!/bin/bash\
+set -e\
+ip="$(curl icanhazip.com -s)"\
+name="$1"\
+version="$2"\
+port="8000"\
+registry="$ip:5000"\
+\
+echo "Pulling $version from registry..."\
+docker pull $registry/$name:$version > /dev/null\
+docker tag --force $registry/$name:$version $name:$version\
+echo "Stopping existing versions..."\
+docker rm -f $(docker ps | grep $name | cut -d ' ' -f 1) > /dev/null 2>&1 || true\
+echo "Starting version $version..."\
+docker run -d -P --link redis:db $name:$version > /dev/null\
+echo "$name deployed:"\
+echo "    $(docker port `docker ps -lq` $port | sed s/0.0.0.0/$ip/)"\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+[:wq to save and exit]\
+\
+$ chmod +x deploy-app\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth5514\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf2 \clbrdrl\brdrs\brdrw20\brdrcf2 \clbrdrb\brdrs\brdrw20\brdrcf2 \clbrdrr\brdrs\brdrw20\brdrcf2 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+\cf0 [switch to local vm] \
+\
+$ pwd\
+$ vim Makefile\
+[add content]\
+\
+VERSION=current\
+HOST=178.62.67.179\
+\
+all: build deploy\
+\
+build:\
+        docker build -t donaldsimpson /helloworld .\
+        docker tag \'96force donaldsimpson/helloworld $(HOST):5000/donaldsimpson/helloworld:$(VERSION)\
+\
+deploy:\
+        docker push $(HOST):5000/donaldsimpson/helloworld:$(VERSION)\
+[:wq to save and quit]\
+\
+$ make\
+\
+\
+\
+\
+$ curl \{ip and port\}\
+$ curl \{ip and port\}\
+$ curl \{ip and port\}\
+\
+[switch back to server terminal]\
+\
+$ docker ps\
+\
+[switch back to local vm]\
+make VERSION=v1\
+\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth5514\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf2 \clbrdrl\brdrs\brdrw20\brdrcf2 \clbrdrb\brdrs\brdrw20\brdrcf2 \clbrdrr\brdrs\brdrw20\brdrcf2 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\fs22 \cf0 \
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\fs20 \cf0 $ vim hello.py\
+[change Hello world to Hello easy deployments]\
+[:wq to save and quit]\
+\
+$ make VERSION=v2\
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\b \cf0 (do docker ps on SERVER for IP)\
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\b0 \cf0 $ curl \{ip and port\}\
+\
+\
+$ make deploy VERSION=v1\
+\
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\b \cf0 (do docker ps on SERVER for IP)\
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\b0 \cf0 \
+$ curl \{ip and port\}\cell \lastrow\row
+}

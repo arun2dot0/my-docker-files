@@ -1,0 +1,57 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\froman\fcharset0 TimesNewRomanPSMT;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri380\sl276\slmult1
+
+\f0\b\fs20 \cf0 Video #1.2 Getting Docker inside a Vagrant VM\
+[I THINK THIS SHOULD BE 1.1????]\
+\
+\
+\pard\pardeftab720\ri380\sl276\slmult1
+
+\b0 \cf0 $ rubygems uninstall vagrant\
+\pard\pardeftab720\ri380\sl100
+\cf0 $ mkdir docker\
+$ cd docker\
+\
+$ vagrant init 3scale/docker\
+\
+\
+\pard\pardeftab720\ri380\sl276\slmult1
+\cf0 $ vagrant up\
+\
+\pard\pardeftab720\ri380\sl100
+\cf0 $ vagrant ssh\
+\
+[Type inside vm]\
+\
+$ docker version \
+\
+$ sudo apt-get update\
+$ sudo apt-get install lxc-docker\
+\
+$ exit\
+[outside vm]\
+$ vagrant halt\
+\
+$ vagrant ssh\
+\
+[Type inside vm]\
+\
+$ docker version \
+\
+$ sudo apt-get update\
+$ sudo apt-get install lxc-docker\
+\
+$ exit\
+[outside vm]\
+$ vagrant halt\
+\pard\pardeftab720\ri380\sl276\slmult1
+\cf0 \
+\pard\pardeftab720\ri380\sl100
+\cf0 \
+\
+\
+}

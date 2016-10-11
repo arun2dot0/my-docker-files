@@ -1,0 +1,77 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fmodern\fcharset0 Courier;\f2\froman\fcharset0 TimesNewRomanPSMT;
+}
+{\colortbl;\red255\green255\blue255;\red192\green192\blue192;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri380\sl276\slmult1
+
+\f0\b\fs20 \cf0 Video Script: Video #3.5 Setting up Automated Builds\
+\
+\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf2 \clbrdrl\brdrs\brdrw20\brdrcf2 \clbrdrb\brdrs\brdrw20\brdrcf2 \clbrdrr\brdrs\brdrw20\brdrcf2 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\b0 \cf0 \
+create repo, copy git remote link...\
+\
+\
+cd sshd-example\
+git init\
+\pard\intbl\itap1\tx916\tx1832\tx2748\tx3664\tx4580\tx5496\tx6412\tx7328\tx8244\tx9160\tx10076\tx10992\tx11908\tx12824\tx13740\tx14656\pardeftab720\ri380
+
+\f1 \cf0 git remote add origin https://github.com/DonaldSimpson/sshd-example.git\
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\f0 \cf0  
+\f2 \
+
+\f0 $ git add .\
+$ git commit -m \'93first commit\'94\
+$ git push origin master\
+[check github repository in browser]\
+\
+\
+\
+[go to docker hub]\
+[click username to get to account pages]\
+[click Automated Builds]\
+[click Linked Accounts in left menu]\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf2 \clbrdrl\brdrs\brdrw20\brdrcf2 \clbrdrb\brdrs\brdrw20\brdrcf2 \clbrdrr\brdrs\brdrw20\brdrcf2 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\f2\fs22 \cf0 \
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\f0\fs20 \cf0 [click Add Automated Build]\
+[select repository]\
+\
+[add description and click Create Repository]\
+\
+\
+\
+\
+\
+\
+\
+\
+[browse to image on hub]\
+\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf2 \clbrdrl\brdrs\brdrw20\brdrcf2 \clbrdrb\brdrs\brdrw20\brdrcf2 \clbrdrr\brdrs\brdrw20\brdrcf2 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+\cf0 $ vim Dockerfile\
+[remove the foobar ENV instruction]\
+$ git add .\
+$ git commit -m \'91removing unnecessary ENV\'92\
+$ git push origin master\
+\
+[browse to github to see the change]\
+\
+[browse to Automated builds to see build scheduled]\cell \lastrow\row
+}

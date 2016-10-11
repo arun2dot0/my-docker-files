@@ -1,0 +1,70 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\froman\fcharset0 TimesNewRomanPSMT;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri380\sl276\slmult1
+
+\f0\b\fs20 \cf0 Video Script: Video #1.2 Containers vs Virtual Machines
+\b0 \
+\
+\pard\pardeftab720\ri380\sl276\slmult1
+
+\fs22 \cf0 http://docs.vagrantup.com/v2/getting-started/index.html\
+\
+\pard\pardeftab720\ri380\sl100
+
+\fs20 \cf0 $ vagrant up && vagrant ssh\
+[inside the vm]\
+$ echo This is a VM!\
+\
+$ docker run -t -i ubuntu /bin/bash\
+[inside container]\
+# echo This is a container!\
+\
+\
+# exit\
+\
+$ time sh -c "vagrant up && vagrant ssh -c 'cat /etc/lsb-release'"\
+\
+\pard\pardeftab720\ri380\sl276\slmult1
+\cf0 $ time docker run ubuntu cat /etc/lsb-release\
+\
+\pard\pardeftab720\ri380\sl100
+\cf0 $ vagrant ssh\
+[inside vm]\
+$ ps auxf\
+\
+$ docker run -t -i ubuntu /bin/bash\
+[inside container]\
+\pard\pardeftab720\ri380\sl276\slmult1
+\cf0 # ps auxf\
+\
+\pard\pardeftab720\ri380\sl100
+\cf0 $ docker run -t -i run tutum/helloworld /bin/bash\
+[inside container]\
+$ apt-get install -y nano\
+$ nano /var/www/index.php\
+[edit to be just <h1>hello!</h1>]\
+$ exit\
+[outside container]\
+$ docker commit $(docker ps -lq) progrium/hello-world\
+$ docker run -d -p 8080:80 progrium/hello-world /run.sh\
+$ curl localhost:8080\
+\pard\pardeftab720\ri380\sl276\slmult1
+\cf0 \
+\
+\pard\pardeftab720\ri380\sl100
+\cf0 $ docker run -d -p 8081:80 progrium/hello-world /run.sh\
+$ docker run -d -p 8082:80 progrium/hello-world /run.sh\
+$ docker run -d -p 8083:80 progrium/hello-world /run.sh\
+$ curl localhost:8081\
+$ curl localhost:8082\
+$ curl localhost:8083\
+\pard\pardeftab720\ri380\sl276\slmult1
+\cf0 \
+\
+\
+\pard\pardeftab720\ri380\sl100
+\cf0 \
+}

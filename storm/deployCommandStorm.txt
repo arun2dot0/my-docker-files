@@ -1,0 +1,1 @@
+  storm jar hello-world-0.0.1-SNAPSHOT-jar-with-dependencies.jar storm.cookbook.HelloWorldTopology hello-world -c nimbus.host=192.168.99.100 -c nimbus.thrift.port=49627

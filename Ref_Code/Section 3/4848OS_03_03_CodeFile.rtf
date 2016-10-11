@@ -1,0 +1,95 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\froman\fcharset0 TimesNewRomanPSMT;}
+{\colortbl;\red255\green255\blue255;\red192\green192\blue192;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri380\sl276\slmult1
+
+\f0\b\fs20 \cf0 Video Script: Video #3.3 Setting default container properties\
+\
+\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth5655\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf2 \clbrdrl\brdrs\brdrw20\brdrcf2 \clbrdrb\brdrs\brdrw20\brdrcf2 \clbrdrr\brdrs\brdrw20\brdrcf2 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\f1\b0\fs22 \cf0 \
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\fs20 \cf0 \
+\
+\
+\
+
+\f0 cd sshd-example\
+vim Dockerfile\
+[add to file]\
+CMD /usr/sbin/sshd -D\
+[save and exit vim]\
+docker build -t donaldsimpson/sshd-example .\
+docker run -d donaldsimpson/sshd-example\
+\
+docker ps\
+docker rm -f $(docker ps -lq)\
+\
+vim Dockerfile\
+[remove CMD line]\
+[add to file:]\
+ENTRYPOINT /usr/sbin/sshd\
+[save and exit]\
+docker build -t donaldsimpson/sshd-example .\
+docker run --rm -it donaldsimpson/sshd-example -h\
+\
+\
+vim Dockerfile\
+[change ENTRYPOINT back to CMD]\
+\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth5655\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf2 \clbrdrl\brdrs\brdrw20\brdrcf2 \clbrdrb\brdrs\brdrw20\brdrcf2 \clbrdrr\brdrs\brdrw20\brdrcf2 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+\cf0 [still in vim]\
+\
+\
+USER nobody\
+\
+WORKDIR /tmp\
+\
+ENV foobar \'93Hello world\'94\
+[save and exit]\
+\
+docker built -t donaldsimpson/sshd-example .\
+\
+\
+docker run --rm -it donaldsimpson/sshd-example id\
+\
+docker run --rm -it donaldsimpson/sshd-example pwd\
+\
+docker run --rm -it donaldsimpson/sshd-example env\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth5655\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf2 \clbrdrl\brdrs\brdrw20\brdrcf2 \clbrdrb\brdrs\brdrw20\brdrcf2 \clbrdrr\brdrs\brdrw20\brdrcf2 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\f1\fs22 \cf0 \
+\pard\intbl\itap1\pardeftab720\ri380\sl100
+
+\fs20 \cf0 \
+\
+\
+\
+
+\f0 vim Dockerfile\
+[add to file]\
+\
+EXPOSE 2222\
+\
+[save and close]\
+\
+docker built -t donaldsimpson/sshd-example .\
+\
+docker run -d donaldsimpson/sshd-example\
+docker ps\
+\
+docker rm -f $(docker ps -lq)\cell \lastrow\row
+}

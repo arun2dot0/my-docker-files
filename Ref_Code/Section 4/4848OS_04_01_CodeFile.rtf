@@ -1,0 +1,100 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\froman\fcharset0 TimesNewRomanPSMT;\f2\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri380\sl276\slmult1
+
+\f0\b\fs20 \cf0 Video Script: Video #4.1 Constraining container resource
+\f1 \
+\
+\
+\pard\pardeftab720\pardirnatural
+
+\f2\b0\fs16 \cf0 \
+\
+\
+\pard\pardeftab720\pardirnatural
+
+\fs20 \cf0 docker pull donaldsimpson/primesum\
+\
+\
+\
+docker run --rm donaldsimpson/primesum 3000\
+\
+\
+\
+\
+\
+docker run -d donaldsimpson/primesum 3000\
+docker run -d donaldsimpson/primesum 3000\
+docker run -d donaldsimpson/primesum 3000\
+docker run -d donaldsimpson/primesum 3000\
+docker run -d donaldsimpson/primesum 3000\
+\
+docker logs $(docker ps -lq)\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+docker run -d -c=10 donaldsimpson/primesum 3000\
+\
+\
+\
+\
+\
+\
+\
+\
+docker run -d donaldsimpson/primesum 3000\
+docker run -d donaldsimpson/primesum 3000\
+docker run -d donaldsimpson/primesum 3000\
+docker run -d donaldsimpson/primesum 3000\
+docker run -d -c=10 donaldsimpson/primesum 3000\
+\
+docker logs $(docker ps -lq)\
+\
+\
+\
+docker pull donaldsimpson/memalloc\
+\
+\
+\
+docker run --rm donaldsimpson/memalloc 256\
+[ctrl c to exit]\
+\
+\
+\
+\
+\
+docker run -d donaldsimpson/memalloc 256 256\
+\
+\
+\
+\
+ps aux | grep [m]em\
+\
+\
+\
+docker rm -f $(docker ps -lq)\
+\
+\
+\
+\
+\
+\
+docker run -m=256mb donaldsimpson/memalloc 512 512\
+\
+\
+\
+\uc0\u8232 docker ps -a\
+\
+\
+}
